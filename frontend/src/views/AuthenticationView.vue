@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import LoginForm from '@/components/common/SignInForm.vue'
-import { onUpdated, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import SignupForm from '@/components/common/SignUpForm.vue'
 import { useAuthStore } from '@/stores/auth'
 import { useRoute, useRouter } from 'vue-router'

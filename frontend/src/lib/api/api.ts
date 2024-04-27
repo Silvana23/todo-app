@@ -14,7 +14,7 @@ export class API {
 
   constructor() {
     this._instance = axios.create({
-      baseURL: 'http://localhost:8080/api/v1',
+      baseURL: import.meta.env.VITE_API_URL,
       timeout: 10000
     })
 
