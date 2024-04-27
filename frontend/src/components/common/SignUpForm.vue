@@ -11,29 +11,22 @@ import {
 } from '@/lib/core/StatusNotification'
 import { useAPI } from '@/lib/api/api'
 import type IUserModel from '@/lib/models/UserModel'
-import { useRouter } from 'vue-router'
 
 const api = useAPI()
-const router = useRouter()
 
 const model = defineModel<boolean>({ required: true })
+const emit = defineEmits(['signUpSuccessful'])
 
 const usernameModel = ref('')
 const passwordModel = ref('')
 const confPasswordModel = ref('')
 
 const isSignUpButtonBlocked = ref(false)
-const isSignUpSuccessful = ref(false)
 
 const notification = ref<IStatusNotification>()
 
 watch(notification, () => {
   setTimeout(() => (notification.value = undefined), 5000)
-})
-
-watch(isSignUpSuccessful, () => {
-  router.push('/authentication?signup=true')
-  router.go(0)
 })
 
 async function doSignUp() {
@@ -78,7 +71,7 @@ async function doSignUp() {
     return
   }
 
-  isSignUpSuccessful.value = true
+  emit('signUpSuccessful')
 }
 
 async function switchToSignIn() {
